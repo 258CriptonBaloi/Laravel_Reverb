@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderDispatched implements ShouldBroadcastNow
+class OrderDelivered implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -33,7 +33,7 @@ class OrderDispatched implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('users.'. $this->user->id),
+            new PrivateChannel('users.' .$this->user->id),
             new PrivateChannel('orders.'. $this->order->id),
         ];
     }
